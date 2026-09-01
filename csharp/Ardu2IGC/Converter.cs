@@ -33,11 +33,11 @@ public sealed class ConversionOptions
 /// </summary>
 public sealed class ConversionResult
 {
-    public string Input { get; init; } = "";
-    public string Output { get; init; } = "";
-    public int FixesWritten { get; init; }
-    public int GapsSkipped { get; init; }
-    public string FlightDate { get; init; } = "unknown";
+    public string Input { get; set; } = "";
+    public string Output { get; set; } = "";
+    public int FixesWritten { get; set; }
+    public int GapsSkipped { get; set; }
+    public string FlightDate { get; set; } = "unknown";
 }
 
 /// <summary>

@@ -10,9 +10,9 @@ namespace Ardu2IGC;
 /// </summary>
 public sealed class LogEntry
 {
-    public string MsgType { get; init; } = "";
-    public double TimestampMs { get; init; }
-    public Dictionary<string, object> Fields { get; init; } = new();
+    public string MsgType { get; set; } = "";
+    public double TimestampMs { get; set; }
+    public Dictionary<string, object> Fields { get; set; } = new();
 
     public T? Get<T>(string fieldName)
     {
@@ -29,11 +29,11 @@ public sealed class LogEntry
 /// </summary>
 internal sealed class FmtDef
 {
-    public byte TypeId { get; init; }
-    public string MsgType { get; init; } = "";
-    public string StructFmt { get; init; } = "";
-    public List<string> FieldNames { get; init; } = new();
-    public int MsgLength { get; init; }
+    public byte TypeId { get; set; }
+    public string MsgType { get; set; } = "";
+    public string StructFmt { get; set; } = "";
+    public List<string> FieldNames { get; set; } = new();
+    public int MsgLength { get; set; }
 }
 
 /// <summary>
@@ -273,7 +273,7 @@ public sealed class ArdupilotLog
             if (fieldsEnd < 0) fieldsEnd = Math.Min(fieldsStart + 200, _data.Length);
             string fieldNamesStr = Encoding.ASCII.GetString(_data, fieldsStart, fieldsEnd - fieldsStart);
             var fieldNames = new List<string>();
-            foreach (var name in fieldNamesStr.Split(',', StringSplitOptions.RemoveEmptyEntries))
+            foreach (var name in fieldNamesStr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var trimmed = name.Trim();
                 if (!string.IsNullOrEmpty(trimmed))

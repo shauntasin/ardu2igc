@@ -10,25 +10,25 @@ namespace Ardu2IGC;
 public sealed class IgcFix
 {
     /// <summary>UTC timestamp (HH:MM:SS).</summary>
-    public DateTime Timestamp { get; init; }
+    public DateTime Timestamp { get; set; }
 
     /// <summary>Latitude in decimal degrees (positive = N, negative = S).</summary>
-    public double Latitude { get; init; }
+    public double Latitude { get; set; }
 
     /// <summary>Longitude in decimal degrees (positive = E, negative = W).</summary>
-    public double Longitude { get; init; }
+    public double Longitude { get; set; }
 
     /// <summary>True if 3D fix (A), false if 2D/invalid (V).</summary>
-    public bool Valid { get; init; } = true;
+    public bool Valid { get; set; } = true;
 
     /// <summary>Pressure altitude in meters.</summary>
-    public int PressureAltitude { get; init; }
+    public int PressureAltitude { get; set; }
 
     /// <summary>GNSS altitude in meters.</summary>
-    public int GpsAltitude { get; init; }
+    public int GpsAltitude { get; set; }
 
     /// <summary>Fix accuracy (estimated position error) in meters.</summary>
-    public int FixAccuracy { get; init; } = 50;
+    public int FixAccuracy { get; set; } = 50;
 }
 
 /// <summary>
@@ -106,10 +106,10 @@ public sealed class IgcWriter
     private void WriteARecord(StreamWriter writer)
     {
         string mfr = Header.ManufacturerCode.Length >= 3
-            ? Header.ManufacturerCode[..3]
+            ? Header.ManufacturerCode.Substring(0, 3)
             : Header.ManufacturerCode.PadRight(3);
         string sn = Header.SerialNumber.Length >= 3
-            ? Header.SerialNumber[..3]
+            ? Header.SerialNumber.Substring(0, 3)
             : Header.SerialNumber.PadRight(3);
         writer.WriteLine($"A{mfr}{sn}ardu2igc Flight Recorder");
     }
@@ -161,10 +161,10 @@ public sealed class IgcWriter
     private string BuildARecord()
     {
         string mfr = Header.ManufacturerCode.Length >= 3
-            ? Header.ManufacturerCode[..3]
+            ? Header.ManufacturerCode.Substring(0, 3)
             : Header.ManufacturerCode.PadRight(3);
         string sn = Header.SerialNumber.Length >= 3
-            ? Header.SerialNumber[..3]
+            ? Header.SerialNumber.Substring(0, 3)
             : Header.SerialNumber.PadRight(3);
         return $"A{mfr}{sn}ardu2igc Flight Recorder";
     }
@@ -227,17 +227,17 @@ public sealed class IgcWriter
         char validity = fix.Valid ? 'A' : 'V';
 
         // Pressure altitude (5 digits)
-        int pressAlt = Math.Clamp(fix.PressureAltitude, -9999, 99999);
+        int pressAlt = fix.PressureAltitude < -9999 ? -9999 : (fix.PressureAltitude > 99999 ? 99999 : fix.PressureAltitude);
         string pressAltStr = pressAlt >= 0
             ? $"{pressAlt:00000}"
             : $"-{Math.Abs(pressAlt):0000}";
 
         // GPS altitude (5 digits)
-        int gpsAlt = Math.Clamp(fix.GpsAltitude, 0, 99999);
+        int gpsAlt = fix.GpsAltitude < 0 ? 0 : (fix.GpsAltitude > 99999 ? 99999 : fix.GpsAltitude);
         string gpsAltStr = $"{gpsAlt:00000}";
 
         // Fix accuracy (3 digits)
-        int fxa = Math.Clamp(fix.FixAccuracy, 0, 999);
+        int fxa = fix.FixAccuracy < 0 ? 0 : (fix.FixAccuracy > 999 ? 999 : fix.FixAccuracy);
         string fxaStr = $"{fxa:000}";
 
         return $"B{timeStr}{latStr}{lonStr}{validity}{pressAltStr}{gpsAltStr}{fxaStr}";
