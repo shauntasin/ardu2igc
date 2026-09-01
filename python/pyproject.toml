@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "ardu2igc"
+version = "1.0.0"
+description = "Convert ArduPilot .bin log files to IGC flight recorder format"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "ardu2igc contributors"},
+]
+keywords = ["ardupilot", "igc", "flight-log", "drone", "uav", "gliding"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+
+[project.optional-dependencies]
+pymavlink = ["pymavlink>=2.4.0"]
+dev = ["pytest>=7.0", "pymavlink>=2.4.0"]
+
+[project.scripts]
+ardu2igc = "examples.convert:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ardu2igc*"]

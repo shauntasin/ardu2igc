@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Ardu2IGC</RootNamespace>
+    <AssemblyName>Ardu2IGC</AssemblyName>
+    <Version>1.0.0</Version>
+    <Description>Convert ArduPilot .bin log files to IGC flight recorder format</Description>
+  </PropertyGroup>
+
+</Project>
