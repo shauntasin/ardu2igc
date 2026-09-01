@@ -8,7 +8,7 @@
     <AssemblyName>Ardu2IGC</AssemblyName>
 
     <!-- NuGet Package Metadata -->
-    <Version>1.0.0</Version>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <Authors>Sameer Somnath Sangle</Authors>
     <Company>Sameer Somnath Sangle</Company>
     <Product>ardu2igc</Product>
@@ -23,20 +23,13 @@
     <PackageReleaseNotes>Initial release: ArduPilot .bin to IGC converter with full FAI compliance.</PackageReleaseNotes>
 
     <!-- Build Settings -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <DebugType>embedded</DebugType>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
   </PropertyGroup>
-
-  <!-- Glob Patterns: Exclude build artifacts -->
-  <ItemGroup>
-    <Compile Remove="bin/**" />
-    <Compile Remove="obj/**" />
-    <None Remove="bin/**" />
-    <None Remove="obj/**" />
-  </ItemGroup>
 
   <!-- Package Files -->
   <ItemGroup>
