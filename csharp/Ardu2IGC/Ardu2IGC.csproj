@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Ardu2IGC</RootNamespace>
@@ -28,8 +28,16 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <DebugType>embedded</DebugType>
+
+    <!-- Suppress NU5017 warning about no dependencies -->
     <NoPackageAnalysis>true</NoPackageAnalysis>
+    <NoWarn>$(NoWarn);NU5017</NoWarn>
   </PropertyGroup>
+
+  <!-- Include source files in package for debugging -->
+  <ItemGroup>
+    <None Include="**/*.cs" Pack="true" PackagePath="src/" />
+  </ItemGroup>
 
   <!-- Package Files -->
   <ItemGroup>

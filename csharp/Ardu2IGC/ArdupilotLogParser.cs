@@ -44,7 +44,7 @@ internal sealed class FmtDef
 /// </summary>
 public sealed class ArdupilotLog
 {
-    private static readonly byte[] PacketHeader = [0xa3, 0x95];
+    private static readonly byte[] PacketHeader = new byte[] { 0xa3, 0x95 };
     private const byte FmtTypeId = 128; // 0x80
 
     // ArduPilot DataFlash format codes to (struct format, field size)

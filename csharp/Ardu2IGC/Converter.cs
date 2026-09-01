@@ -227,7 +227,7 @@ public static class ArdupilotConverter
             ["hasGps"] = msgCounts.ContainsKey("GPS") || msgCounts.ContainsKey("GPS2"),
             ["hasBaro"] = baroCount > 0,
             ["baroReadings"] = baroCount,
-            ["gpsWeek"] = gpsWeek,
+            ["gpsWeek"] = gpsWeek ?? 0,
         };
     }
 
