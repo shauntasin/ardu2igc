@@ -33,3 +33,7 @@ Thumbs.db
 # Test files
 *.bin
 *.igc
+csharp/nupkg/
+python/dist/
+python/build/
+python/*.egg-info/

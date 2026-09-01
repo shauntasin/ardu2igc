@@ -1,13 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Ardu2IGC</RootNamespace>
     <AssemblyName>Ardu2IGC</AssemblyName>
+
+    <!-- NuGet Package Metadata -->
     <Version>1.0.0</Version>
-    <Description>Convert ArduPilot .bin log files to IGC flight recorder format</Description>
+    <Authors>Sameer Somnath Sangle</Authors>
+    <Company>Sameer Somnath Sangle</Company>
+    <Product>ardu2igc</Product>
+    <Copyright>Copyright (C) 2026 Sameer Somnath Sangle</Copyright>
+    <Description>Convert ArduPilot DataFlash .bin flight log files (ArduCopter, ArduPlane) to FAI/IGC flight recorder format. Dual-language library with zero dependencies.</Description>
+    <PackageTags>ardupilot;igc;flight-log;drone;uav;arducopter;arduplane;dataflash;gliding;faia;gps;telemetry</PackageTags>
+    <PackageLicenseExpression>GPL-2.0-only</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/shauntasin/ardu2igc</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/shauntasin/ardu2igc.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>Initial release: ArduPilot .bin to IGC converter with full FAI compliance.</PackageReleaseNotes>
+
+    <!-- Build Settings -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 
 </Project>
