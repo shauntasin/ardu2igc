@@ -40,3 +40,15 @@ dev = ["pytest>=7.0", "pymavlink>=2.4.0"]
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["ardu2igc*"]
+exclude = ["tests*", "examples*", "docs*"]
+
+[tool.setuptools.package-data]
+ardu2igc = [
+    "*.py",
+    "**/*.py",
+    "py.typed",
+    "*.pyi",
+    "*.json",
+    "*.yaml",
+    "*.yml",
+]
